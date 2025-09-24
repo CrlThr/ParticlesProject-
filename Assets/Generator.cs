@@ -11,7 +11,7 @@ public class Generator : MonoBehaviour
     [SerializeField] private float maxTimeToLive;
 
 
-    public float spawnInterval = 0.2f;
+    public float spawnInterval = -0.02f;
 
     private float timer = 0;
 
