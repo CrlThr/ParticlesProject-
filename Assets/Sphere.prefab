@@ -103,7 +103,7 @@ SphereCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -121,5 +121,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61a1d6afb7f991f459204bdf667a25c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  particlePrefabs: {fileID: 0}
+  ParticlePrefabs: {fileID: 0}
+  minSpeedParticle: 0
+  maxSpeedParticle: 0
+  minTimeToLive: 0
+  maxTimeToLive: 0
   spawnInterval: 0.2
