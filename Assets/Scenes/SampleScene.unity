@@ -153,10 +153,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ParticlePrefabs: {fileID: 3246185756640080237, guid: ce71ed58b72f90f44a2845b69d3dd6cb, type: 3}
   minSpeedParticle: 0
-  maxSpeedParticle: 0
+  maxSpeedParticle: 10
   minTimeToLive: 0
-  maxTimeToLive: 0
-  spawnInterval: 13.14
+  maxTimeToLive: 4
+  spawnInterval: 0.02
 --- !u!135 &1083216650
 SphereCollider:
   m_ObjectHideFlags: 0
