@@ -42,9 +42,10 @@ public class TornadoMovementModule : ParticleModule
         float radians = angle * Mathf.Deg2Rad;
 
         Vector3 offset = new Vector3(
-            Mathf.Cos(radians) * radius,
-            height,
-            Mathf.Sin(radians) * radius
+          
+            -Mathf.Sin(radians) * radius,
+             Mathf.Cos(radians) * radius,
+            height
         );
 
         _particle.transform.position = center.position + offset;

@@ -12,14 +12,14 @@ public class Generator : MonoBehaviour
     [SerializeField] private float maxTimeToLive;
 
     [Header("Spawn Settings")]
-    [SerializeField] private float spawnInterval = 5f;
+    [SerializeField] private float spawnInterval = 0.02f;
     [SerializeField] private int maxParticles = 100;
     [SerializeField] private bool spawnAllAtOnce = false;
 
     private float timer = 0f;
     private int currentParticleCount = 0;
 
-    private List<Particle> spawnedParticles = new(); // Optional
+    private List<Particle> spawnedParticles = new(); // Optionals
 
     public enum MovementType
     {

@@ -3,7 +3,7 @@ using UnityEngine;
 public class EffectArea : MonoBehaviour
 {
     // effect settings 
-    [SerializeField] private float radius = 25f;
+    [SerializeField] private float radius = 4f;
     [SerializeField] private EffectType effectType;
     [SerializeField] private float repulsionforce = 20f;
     [SerializeField] private float attractionforce = 10f;

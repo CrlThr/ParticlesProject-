@@ -14,7 +14,7 @@ public class LifecycleModule : ParticleModule
     {
 
         time += Time.deltaTime;
-        if (time >= 4)//timeToLive
+        if (time >= 5)//timeToLive
         {
             GameObject.Destroy(_particle.gameObject);
         }
