@@ -1,8 +1,9 @@
-using Unity.VisualScripting;
 using UnityEngine;
+using System.Collections.Generic;
 
 public class Generator : MonoBehaviour
 {
+    [Header("Particle Settings")]
     [SerializeField] public Particle ParticlePrefabs;
 
     [SerializeField] private float minSpeedParticle;
@@ -10,45 +11,80 @@ public class Generator : MonoBehaviour
     [SerializeField] private float minTimeToLive;
     [SerializeField] private float maxTimeToLive;
 
+    [Header("Spawn Settings")]
+    [SerializeField] private float spawnInterval = 5f;
+    [SerializeField] private int maxParticles = 100;
+    [SerializeField] private bool spawnAllAtOnce = false;
 
-    public float spawnInterval = 0.02f;
+    private float timer = 0f;
+    private int currentParticleCount = 0;
 
-    private float timer = 0;
+    private List<Particle> spawnedParticles = new(); // Optional
 
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public enum MovementType
     {
-
+        Linear,
+        Tornado
     }
 
-    // Update is called once per frame
+    [SerializeField] private MovementType movementType = MovementType.Linear;
+
+    public MovementType GetMovementType()
+    {
+        return movementType;
+    }
+
+    void Start()
+    {
+    }
+
     void Update()
     {
-        timer += Time.deltaTime;
-
-        if (timer >= spawnInterval)
+        if (spawnAllAtOnce)
         {
-            timer = 0;
+            if (currentParticleCount == 0)
+            {
+                for (int i = 0; i < maxParticles; i++)
+                {
+                    CreateParticle();
+                }
+            }
 
-            CreateParticle();
+            return; // skip interval spawning
         }
 
+        if (currentParticleCount < maxParticles)
+        {
+            timer += Time.deltaTime;
+
+            if (timer >= spawnInterval)
+            {
+                timer = 0f;
+                CreateParticle();
+            }
+        }
     }
 
     void CreateParticle()
     {
+        if (currentParticleCount >= maxParticles)
+            return;
+
         Particle particle = Instantiate(ParticlePrefabs, transform);
 
         particle.Init(
-            Random.onUnitSphere
-            , Random.Range(minSpeedParticle, maxSpeedParticle)
-            , Random.Range(minTimeToLive, maxTimeToLive)
-            , Random.ColorHSV());
-     }
-      
+            Random.onUnitSphere,
+            Random.Range(minSpeedParticle, maxSpeedParticle),
+            Random.Range(minTimeToLive, maxTimeToLive),
+            Random.ColorHSV());
+
+        currentParticleCount++;
+        spawnedParticles.Add(particle);
+    }
+
+    public void OnParticleDestroyed(Particle p)
+    {
+        currentParticleCount--;
+        spawnedParticles.Remove(p);
+    }
 }
-
-
-
-
